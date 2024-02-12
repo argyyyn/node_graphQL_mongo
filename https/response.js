@@ -6,6 +6,6 @@ function read () {
   return decrypt()
 }
 
-module.exports = {
+export {
   read
 }
