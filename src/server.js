@@ -8,12 +8,18 @@ server.listen(PORT, _ => {
   console.log('listening for port', PORT)
 })
 
-
 server.on('request', (req, res) => {
 
   const items = req.url.split('/')
 
-  if (items[1] === 'friends') {
+  if (req.method === 'POST' && items[1] === 'friends') {
+    req.on('data', data => {
+      console.log(data.toString())
+      req.pipe(res)
+    })
+  }
+
+  if (req.method === 'GET' && items[1] === 'friends') {
     res.statusCode = 200
     res.setHeader('Content-type', 'application/json')
 
@@ -28,7 +34,7 @@ server.on('request', (req, res) => {
     }
   }
 
-  else if (items[1] === 'messages') {
+  if (req.method === 'GET' && items[1] === 'messages') {
     res.setHeader('Content-type', 'text/html')
     res.write('<h1>argo</h1>')
     res.end()
