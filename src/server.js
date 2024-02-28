@@ -14,7 +14,7 @@ server.on('request', (req, res) => {
 
   if (req.method === 'POST' && items[1] === 'friends') {
     req.on('data', data => {
-      console.log(data.toString())
+      console.log(data)
       req.pipe(res)
     })
   }
