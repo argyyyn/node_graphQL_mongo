@@ -17,7 +17,11 @@ app.get('/', (req, res) => {
 })
 
 app.get('/messages', (req, res) => {
-  res.send({id: 1, name: 'argo'})
+  res.send({id: 1, name: 'GET'})
+})
+
+app.post('/messages', (req, res) => {
+  res.send({id: 1, name: 'POST'})
 })
 
 app.get('/messages/:id', (req, res) => {
