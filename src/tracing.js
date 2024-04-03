@@ -7,8 +7,6 @@ const { ConsoleSpanExporter } = require('@opentelemetry/sdk-trace-base');
 const { Resource } = require('@opentelemetry/resources');
 const { SemanticResourceAttributes } = require('@opentelemetry/semantic-conventions');
 
-// configure the SDK to export telemetry data to the console
-// enable all auto-instrumentations from the meta package
 const traceExporter = new ConsoleSpanExporter();
 const sdk = new opentelemetry.NodeSDK({
   resource: new Resource({

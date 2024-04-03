@@ -1,8 +1,14 @@
-import express from 'express'
-
+const express = require('express')
+const cors = require('cors')
 const app = express()
 
 const port = 8000
+
+app.use(cors({
+  origin: 'http://localhost:5173',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'trace-id']
+}));
 
 const messages = [
   {id: 1, name: 'argo'},
@@ -17,7 +23,8 @@ app.get('/', (req, res) => {
 })
 
 app.get('/messages', (req, res) => {
-  res.send({id: 1, name: 'GET'})
+  console.log(req.headers)
+  res.send(messages)
 })
 
 app.post('/messages', (req, res) => {
